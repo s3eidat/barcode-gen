@@ -1,0 +1,10 @@
+.bg-grid { align-items: start; }
+.bg-formats { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.bg-formats button { padding: 6px 4px; }
+.bg-text { align-self: end; padding-bottom: 10px; }
+.bg-stage { display: grid; place-items: center; min-height: 240px; margin-top: 12px; padding: 18px; border-radius: 14px; border: 1px solid var(--line); overflow: auto; }
+.bg-stage svg { width: 100%; max-width: 460px; height: auto; display: block; box-shadow: 0 10px 30px -14px rgba(0,0,0,.5); border-radius: 4px; }
+.bg-stage .empty { padding: 20px; }
+.bg-scale { width: auto; }
+#batch { min-height: 120px; }
+#status { max-width: 100%; white-space: normal; }

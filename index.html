@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Barcode Gen — Free Code 128, EAN-13, UPC-A &amp; Code 39 Barcode Generator | S3eidat Tools</title>
+<meta name="description" content="Make Code 128, EAN-13, UPC-A and Code 39 barcodes as SVG or PNG. Check digits calculated and validated, batch from a list to a zip. Free, private, nothing uploaded.">
+<meta property="og:title" content="Barcode Gen — free, private barcode generator">
+<meta property="og:description" content="Code 128, EAN-13, UPC-A and Code 39 as SVG or PNG, with check digits and batch zip. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="barcode-gen">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Barcode Gen</h1>
+    <p>Code 128, EAN-13, UPC-A and Code 39 barcodes with correct check digits, as crisp SVG or PNG. One at a time or a whole list at once.</p>
+  </section>
+
+  <div class="grid-2 bg-grid">
+    <section class="card">
+      <h2>Barcode</h2>
+      <div class="stack">
+        <div class="seg bg-formats" id="format" role="group" aria-label="Barcode format">
+          <button aria-pressed="true" data-v="code128">Code 128</button>
+          <button aria-pressed="false" data-v="ean13">EAN-13</button>
+          <button aria-pressed="false" data-v="upca">UPC-A</button>
+          <button aria-pressed="false" data-v="code39">Code 39</button>
+        </div>
+        <label class="field"><span id="valueLabel">Value</span>
+          <input class="input mono" id="value" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="row"><span class="chip" id="status">Waiting</span><span class="faint" id="hint"></span></div>
+        <label class="check" id="c39checkWrap" hidden><input type="checkbox" id="c39check"> Add mod-43 check character</label>
+        <div class="grid-2">
+          <label class="field"><span>Bar width: <span id="modVal">2</span> px</span><input type="range" id="mod" min="1" max="6" step="1" value="2"></label>
+          <label class="field"><span>Height: <span id="heightVal">80</span> px</span><input type="range" id="height" min="30" max="220" step="5" value="80"></label>
+        </div>
+        <div class="row">
+          <label class="field">Bars<input type="color" id="fg" value="#000000"></label>
+          <label class="field">Background<input type="color" id="bg" value="#ffffff"></label>
+          <label class="check bg-text"><input type="checkbox" id="text" checked> Show human-readable text</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card bg-preview-card">
+      <div class="row between">
+        <h2>Preview</h2>
+        <span class="faint" id="dims"></span>
+      </div>
+      <div class="bg-stage checker" id="stage"></div>
+      <div class="row mt">
+        <button class="btn primary grow" id="svg"><svg class="i"><use href="#i-download"/></svg>SVG</button>
+        <button class="btn grow" id="png"><svg class="i"><use href="#i-download"/></svg>PNG</button>
+        <select class="select bg-scale" id="scale" aria-label="PNG scale">
+          <option value="1">PNG 1×</option>
+          <option value="2" selected>PNG 2×</option>
+          <option value="4">PNG 4×</option>
+        </select>
+        <button class="btn" id="copySvg" title="Copy SVG code"><svg class="i"><use href="#i-copy"/></svg>SVG code</button>
+      </div>
+    </section>
+  </div>
+
+  <section class="card mt">
+    <div class="row between">
+      <h2>Batch <small>one value per line, same format and style</small></h2>
+      <div class="row">
+        <div class="seg" id="batchFmt" role="group" aria-label="Batch file type">
+          <button aria-pressed="true" data-v="svg">SVG</button>
+          <button aria-pressed="false" data-v="png">PNG</button>
+        </div>
+        <button class="btn primary" id="batchGo"><svg class="i"><use href="#i-download"/></svg>Download zip</button>
+      </div>
+    </div>
+    <textarea class="textarea" id="batch" spellcheck="false" placeholder="SKU-0001&#10;SKU-0002&#10;SKU-0003"></textarea>
+    <p class="faint" id="batchInfo">Paste up to 1000 values. Each one becomes its own file in the zip.</p>
+    <div class="tbl-wrap" id="batchErrWrap" hidden><table class="tbl"><thead><tr><th>Line</th><th>Value</th><th>Problem</th></tr></thead><tbody id="batchErr"></tbody></table></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
